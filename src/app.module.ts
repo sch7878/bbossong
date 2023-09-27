@@ -5,9 +5,9 @@ import { AppService } from './app.service';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
-const TypeOrmModuleOptions = {
+const typeOrmModuleOptions = {
   useFactory: async (
     configService: ConfigService,
   ): Promise<TypeOrmModuleOptions> => ({
@@ -26,7 +26,12 @@ const TypeOrmModuleOptions = {
   inject: [ConfigService],
 };
 @Module({
-  imports: [TypeOrmModule, UsersModule, ConfigService],
+  imports: [
+    TypeOrmModule,
+    UsersModule,
+    ConfigModule.forRoot({ isGlobal: true }),
+    TypeOrmModule.forRootAsync(typeOrmModuleOptions),
+  ],
   controllers: [AppController, UsersController],
   providers: [AppService, UsersService],
 })
