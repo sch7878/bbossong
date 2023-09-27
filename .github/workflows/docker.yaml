@@ -2,6 +2,7 @@ name: ci-pipeline
 on:
   push:
     branches:
+      - dev
       - main
 jobs:
   #Image Build하여 DockerHub에 Push
