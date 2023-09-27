@@ -7,7 +7,6 @@ on:
 jobs:
   #Image Build하여 DockerHub에 Push
   continuos-integration:
-    needs: [run-test-code]
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU

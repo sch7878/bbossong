@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  # project build setting
+  api:
+    image: becool0514/bbossong
+    env_file:
+      - './.env'
+    ports:
+      - 80:3000
+    command: ['sh', '-c', 'npm run start:prod']
